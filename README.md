@@ -24,40 +24,82 @@ Oracle Linux). Pull it once with:
 docker pull container-registry.oracle.com/graalvm/native-image:24
 ```
 
-## Quick start (macOS via Docker)
+## Quick start (macOS)
 
 ```sh
-# 1. Build a Linux native binary
-./docker-build.sh
+# Build and install to ~/.local/bin
+./install-osx.sh
 
-# 2. Test it
-./docker-test.sh
+# Test the installed binary
+tlc /path/to/MySpec
 ```
 
-The resulting `tlc-native` (Linux ELF binary), `tlc` (wrapper script), and
-`tla2sany/StandardModules/` directory are written into this repository directory and can be
-distributed as a unit.
+`install-osx.sh` builds a Mach-O native binary if one is not already present, then installs:
+
+```
+~/.local/bin/tlc-native
+~/.local/bin/tlc
+~/Library/Application Support/tlc/tla2sany/StandardModules/
+```
+
+To uninstall:
+
+```sh
+./uninstall-osx.sh
+```
 
 ## Quick start (Linux)
 
 ```sh
-# 1. Build
-./build-linux.sh
+# Build and install to ~/.local/bin
+./install-linux.sh
 
-# 2. Test
-./test-linux.sh
+# Test the installed binary
+tlc /path/to/MySpec
 ```
 
-## Quick start (macOS native)
+Installs to:
+
+```
+~/.local/bin/tlc-native
+~/.local/bin/tlc
+~/.local/share/tlc/tla2sany/StandardModules/   # respects $XDG_DATA_HOME
+```
+
+To uninstall:
 
 ```sh
+./uninstall-linux.sh
+```
+
+## Building and testing without installing
+
+```sh
+# macOS native build + test
 ./build-osx.sh
 ./test-osx.sh
+
+# Linux native build + test
+./build-linux.sh
+./test-linux.sh
+
+# Build a Linux binary from a macOS host (via Docker)
+./docker-build.sh
+./docker-test.sh
 ```
 
 ---
 
 ## Script reference
+
+### Install scripts
+
+| Script | Platform | Notes |
+|--------|----------|-------|
+| `install-osx.sh` | macOS | Builds if needed; installs to `~/.local/bin` + `~/Library/Application Support/tlc` |
+| `install-linux.sh` | Linux | Builds if needed; installs to `~/.local/bin` + `$XDG_DATA_HOME/tlc` |
+| `uninstall-osx.sh` | macOS | Removes all files installed by `install-osx.sh` |
+| `uninstall-linux.sh` | Linux | Removes all files installed by `install-linux.sh` |
 
 ### Build scripts
 
