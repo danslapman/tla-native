@@ -1,0 +1,1250 @@
+{
+  "reflection": [
+    {
+      "type": "FiniteSets"
+    },
+    {
+      "type": "HelloWorld"
+    },
+    {
+      "type": "Integers"
+    },
+    {
+      "type": "Naturals"
+    },
+    {
+      "type": "Sequences"
+    },
+    {
+      "type": "Strings"
+    },
+    {
+      "type": "TLC"
+    },
+    {
+      "type": "[B"
+    },
+    {
+      "type": "[C"
+    },
+    {
+      "type": "[D"
+    },
+    {
+      "type": "[F"
+    },
+    {
+      "type": "[I"
+    },
+    {
+      "type": "[J"
+    },
+    {
+      "type": "[Ljava.lang.String;"
+    },
+    {
+      "type": "[Ljavax.management.openmbean.CompositeData;"
+    },
+    {
+      "type": "[S"
+    },
+    {
+      "type": "[Z"
+    },
+    {
+      "type": "com.sun.management.GarbageCollectorMXBean"
+    },
+    {
+      "type": "com.sun.management.GcInfo"
+    },
+    {
+      "type": "com.sun.management.HotSpotDiagnosticMXBean"
+    },
+    {
+      "type": "com.sun.management.ThreadMXBean"
+    },
+    {
+      "type": "com.sun.management.UnixOperatingSystemMXBean"
+    },
+    {
+      "type": "com.sun.management.VMOption"
+    },
+    {
+      "type": "com.sun.management.internal.GarbageCollectorExtImpl"
+    },
+    {
+      "type": "com.sun.management.internal.HotSpotDiagnostic"
+    },
+    {
+      "type": "com.sun.management.internal.HotSpotThreadImpl"
+    },
+    {
+      "type": "com.sun.management.internal.OperatingSystemImpl"
+    },
+    {
+      "type": "com.sun.management.internal.VirtualThreadSchedulerImpls$VirtualThreadSchedulerImpl"
+    },
+    {
+      "type": "java.lang.Boolean",
+      "fields": [
+        {
+          "name": "TYPE"
+        }
+      ]
+    },
+    {
+      "type": "java.lang.Byte",
+      "fields": [
+        {
+          "name": "TYPE"
+        }
+      ]
+    },
+    {
+      "type": "java.lang.Character",
+      "fields": [
+        {
+          "name": "TYPE"
+        }
+      ]
+    },
+    {
+      "type": "java.lang.Deprecated"
+    },
+    {
+      "type": "java.lang.Double",
+      "fields": [
+        {
+          "name": "TYPE"
+        }
+      ]
+    },
+    {
+      "type": "java.lang.Float",
+      "fields": [
+        {
+          "name": "TYPE"
+        }
+      ]
+    },
+    {
+      "type": "java.lang.Integer",
+      "fields": [
+        {
+          "name": "TYPE"
+        }
+      ]
+    },
+    {
+      "type": "java.lang.Long",
+      "fields": [
+        {
+          "name": "TYPE"
+        }
+      ]
+    },
+    {
+      "type": "java.lang.ProcessHandle",
+      "methods": [
+        {
+          "name": "current",
+          "parameterTypes": []
+        },
+        {
+          "name": "pid",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "java.lang.Short",
+      "fields": [
+        {
+          "name": "TYPE"
+        }
+      ]
+    },
+    {
+      "type": "java.lang.StackTraceElement"
+    },
+    {
+      "type": "java.lang.String",
+      "fields": [
+        {
+          "name": "TYPE"
+        }
+      ]
+    },
+    {
+      "type": "java.lang.Void",
+      "fields": [
+        {
+          "name": "TYPE"
+        }
+      ]
+    },
+    {
+      "type": "java.lang.management.BufferPoolMXBean"
+    },
+    {
+      "type": "java.lang.management.ClassLoadingMXBean"
+    },
+    {
+      "type": "java.lang.management.CompilationMXBean"
+    },
+    {
+      "type": "java.lang.management.LockInfo"
+    },
+    {
+      "type": "java.lang.management.MemoryMXBean"
+    },
+    {
+      "type": "java.lang.management.MemoryManagerMXBean"
+    },
+    {
+      "type": "java.lang.management.MemoryPoolMXBean"
+    },
+    {
+      "type": "java.lang.management.MemoryUsage"
+    },
+    {
+      "type": "java.lang.management.MonitorInfo"
+    },
+    {
+      "type": "java.lang.management.PlatformLoggingMXBean"
+    },
+    {
+      "type": "java.lang.management.RuntimeMXBean"
+    },
+    {
+      "type": "java.lang.management.ThreadInfo"
+    },
+    {
+      "type": "java.math.BigDecimal"
+    },
+    {
+      "type": "java.math.BigInteger"
+    },
+    {
+      "type": "java.rmi.Remote"
+    },
+    {
+      "type": "java.util.Date"
+    },
+    {
+      "type": "java.util.logging.LogManager",
+      "methods": [
+        {
+          "name": "getLoggingMXBean",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "java.util.logging.LoggingMXBean"
+    },
+    {
+      "type": "javax.management.DynamicMBean"
+    },
+    {
+      "type": "javax.management.MBeanOperationInfo"
+    },
+    {
+      "type": "javax.management.MBeanServerBuilder",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "javax.management.ObjectName"
+    },
+    {
+      "type": "javax.management.StandardEmitterMBean"
+    },
+    {
+      "type": "javax.management.openmbean.CompositeData"
+    },
+    {
+      "type": "javax.management.openmbean.OpenMBeanOperationInfoSupport"
+    },
+    {
+      "type": "javax.management.openmbean.TabularData"
+    },
+    {
+      "type": "jdk.management.VirtualThreadSchedulerMXBean"
+    },
+    {
+      "type": "jdk.management.jfr.ConfigurationInfo"
+    },
+    {
+      "type": "jdk.management.jfr.EventTypeInfo"
+    },
+    {
+      "type": "jdk.management.jfr.FlightRecorderMXBean"
+    },
+    {
+      "type": "jdk.management.jfr.FlightRecorderMXBeanImpl"
+    },
+    {
+      "type": "jdk.management.jfr.RecordingInfo"
+    },
+    {
+      "type": "jdk.management.jfr.SettingDescriptorInfo"
+    },
+    {
+      "type": "sun.management.ClassLoadingImpl"
+    },
+    {
+      "type": "sun.management.CompilationImpl"
+    },
+    {
+      "type": "sun.management.ManagementFactoryHelper$1"
+    },
+    {
+      "type": "sun.management.ManagementFactoryHelper$PlatformLoggingImpl"
+    },
+    {
+      "type": "sun.management.MemoryImpl"
+    },
+    {
+      "type": "sun.management.MemoryManagerImpl"
+    },
+    {
+      "type": "sun.management.MemoryPoolImpl"
+    },
+    {
+      "type": "sun.management.RuntimeImpl"
+    },
+    {
+      "type": "sun.rmi.transport.DGCImpl_Skel",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "sun.rmi.transport.DGCImpl_Stub",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": [
+            "java.rmi.server.RemoteRef"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "sun.security.provider.NativePRNG",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": [
+            "java.security.SecureRandomParameters"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "sun.security.provider.SHA",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "tlc2.module.FiniteSets",
+      "fields": [
+        {
+          "name": "serialVersionUID"
+        }
+      ],
+      "methods": [
+        {
+          "name": "Cardinality",
+          "parameterTypes": [
+            "tlc2.value.impl.Value"
+          ]
+        },
+        {
+          "name": "IsFiniteSet",
+          "parameterTypes": [
+            "tlc2.value.impl.Value"
+          ]
+        }
+      ],
+      "allDeclaredConstructors": true,
+      "allPublicConstructors": true,
+      "allDeclaredMethods": true,
+      "allPublicMethods": true,
+      "allDeclaredFields": true
+    },
+    {
+      "type": "tlc2.module.HelloWorld"
+    },
+    {
+      "type": "tlc2.module.Integers",
+      "fields": [
+        {
+          "name": "serialVersionUID"
+        }
+      ],
+      "methods": [
+        {
+          "name": "Divide",
+          "parameterTypes": [
+            "tlc2.value.impl.IntValue",
+            "tlc2.value.impl.IntValue"
+          ]
+        },
+        {
+          "name": "DotDot",
+          "parameterTypes": [
+            "tlc2.value.impl.IntValue",
+            "tlc2.value.impl.IntValue"
+          ]
+        },
+        {
+          "name": "Expt",
+          "parameterTypes": [
+            "tlc2.value.impl.IntValue",
+            "tlc2.value.impl.IntValue"
+          ]
+        },
+        {
+          "name": "GEQ",
+          "parameterTypes": [
+            "tlc2.value.impl.Value",
+            "tlc2.value.impl.Value"
+          ]
+        },
+        {
+          "name": "GT",
+          "parameterTypes": [
+            "tlc2.value.impl.Value",
+            "tlc2.value.impl.Value"
+          ]
+        },
+        {
+          "name": "Int",
+          "parameterTypes": []
+        },
+        {
+          "name": "LE",
+          "parameterTypes": [
+            "tlc2.value.impl.Value",
+            "tlc2.value.impl.Value"
+          ]
+        },
+        {
+          "name": "LT",
+          "parameterTypes": [
+            "tlc2.value.impl.Value",
+            "tlc2.value.impl.Value"
+          ]
+        },
+        {
+          "name": "Minus",
+          "parameterTypes": [
+            "tlc2.value.impl.IntValue",
+            "tlc2.value.impl.IntValue"
+          ]
+        },
+        {
+          "name": "Mod",
+          "parameterTypes": [
+            "tlc2.value.impl.IntValue",
+            "tlc2.value.impl.IntValue"
+          ]
+        },
+        {
+          "name": "Nat",
+          "parameterTypes": []
+        },
+        {
+          "name": "Neg",
+          "parameterTypes": [
+            "tlc2.value.impl.IntValue"
+          ]
+        },
+        {
+          "name": "Plus",
+          "parameterTypes": [
+            "tlc2.value.impl.IntValue",
+            "tlc2.value.impl.IntValue"
+          ]
+        },
+        {
+          "name": "Times",
+          "parameterTypes": [
+            "tlc2.value.impl.IntValue",
+            "tlc2.value.impl.IntValue"
+          ]
+        }
+      ],
+      "allDeclaredConstructors": true,
+      "allPublicConstructors": true,
+      "allDeclaredMethods": true,
+      "allPublicMethods": true,
+      "allDeclaredFields": true
+    },
+    {
+      "type": "tlc2.module.Naturals",
+      "fields": [
+        {
+          "name": "serialVersionUID"
+        }
+      ],
+      "methods": [
+        {
+          "name": "Divide",
+          "parameterTypes": [
+            "tlc2.value.impl.IntValue",
+            "tlc2.value.impl.IntValue"
+          ]
+        },
+        {
+          "name": "DotDot",
+          "parameterTypes": [
+            "tlc2.value.impl.IntValue",
+            "tlc2.value.impl.IntValue"
+          ]
+        },
+        {
+          "name": "Expt",
+          "parameterTypes": [
+            "tlc2.value.impl.IntValue",
+            "tlc2.value.impl.IntValue"
+          ]
+        },
+        {
+          "name": "GEQ",
+          "parameterTypes": [
+            "tlc2.value.impl.Value",
+            "tlc2.value.impl.Value"
+          ]
+        },
+        {
+          "name": "GT",
+          "parameterTypes": [
+            "tlc2.value.impl.Value",
+            "tlc2.value.impl.Value"
+          ]
+        },
+        {
+          "name": "LE",
+          "parameterTypes": [
+            "tlc2.value.impl.Value",
+            "tlc2.value.impl.Value"
+          ]
+        },
+        {
+          "name": "LT",
+          "parameterTypes": [
+            "tlc2.value.impl.Value",
+            "tlc2.value.impl.Value"
+          ]
+        },
+        {
+          "name": "Minus",
+          "parameterTypes": [
+            "tlc2.value.impl.IntValue",
+            "tlc2.value.impl.IntValue"
+          ]
+        },
+        {
+          "name": "Mod",
+          "parameterTypes": [
+            "tlc2.value.impl.IntValue",
+            "tlc2.value.impl.IntValue"
+          ]
+        },
+        {
+          "name": "Nat",
+          "parameterTypes": []
+        },
+        {
+          "name": "Plus",
+          "parameterTypes": [
+            "tlc2.value.impl.IntValue",
+            "tlc2.value.impl.IntValue"
+          ]
+        },
+        {
+          "name": "Times",
+          "parameterTypes": [
+            "tlc2.value.impl.IntValue",
+            "tlc2.value.impl.IntValue"
+          ]
+        }
+      ],
+      "allDeclaredConstructors": true,
+      "allPublicConstructors": true,
+      "allDeclaredMethods": true,
+      "allPublicMethods": true,
+      "allDeclaredFields": true
+    },
+    {
+      "type": "tlc2.module.Sequences",
+      "fields": [
+        {
+          "name": "serialVersionUID"
+        }
+      ],
+      "methods": [
+        {
+          "name": "Append",
+          "parameterTypes": [
+            "tlc2.value.impl.Value",
+            "tlc2.value.impl.Value"
+          ]
+        },
+        {
+          "name": "Concat",
+          "parameterTypes": [
+            "tlc2.value.impl.Value",
+            "tlc2.value.impl.Value"
+          ]
+        },
+        {
+          "name": "Cons",
+          "parameterTypes": [
+            "tlc2.value.impl.Value",
+            "tlc2.value.impl.Value"
+          ]
+        },
+        {
+          "name": "Head",
+          "parameterTypes": [
+            "tlc2.value.impl.Value"
+          ]
+        },
+        {
+          "name": "Insert",
+          "parameterTypes": [
+            "tlc2.value.impl.Value",
+            "tlc2.value.impl.Value",
+            "tlc2.value.impl.Value"
+          ]
+        },
+        {
+          "name": "Len",
+          "parameterTypes": [
+            "tlc2.value.impl.Value"
+          ]
+        },
+        {
+          "name": "SelectInSeq",
+          "parameterTypes": [
+            "tlc2.value.impl.Value",
+            "tlc2.value.impl.Value"
+          ]
+        },
+        {
+          "name": "SelectSeq",
+          "parameterTypes": [
+            "tlc2.value.impl.Value",
+            "tlc2.value.impl.Value"
+          ]
+        },
+        {
+          "name": "Seq",
+          "parameterTypes": [
+            "tlc2.value.impl.Value"
+          ]
+        },
+        {
+          "name": "SubSeq",
+          "parameterTypes": [
+            "tlc2.value.impl.Value",
+            "tlc2.value.impl.Value",
+            "tlc2.value.impl.Value"
+          ]
+        },
+        {
+          "name": "Tail",
+          "parameterTypes": [
+            "tlc2.value.impl.Value"
+          ]
+        }
+      ],
+      "allDeclaredConstructors": true,
+      "allPublicConstructors": true,
+      "allDeclaredMethods": true,
+      "allPublicMethods": true,
+      "allDeclaredFields": true
+    },
+    {
+      "type": "tlc2.module.Strings",
+      "methods": [
+        {
+          "name": "STRING",
+          "parameterTypes": []
+        }
+      ],
+      "allDeclaredConstructors": true,
+      "allPublicConstructors": true,
+      "allDeclaredMethods": true,
+      "allPublicMethods": true,
+      "allDeclaredFields": true
+    },
+    {
+      "type": "tlc2.module.TLC",
+      "fields": [
+        {
+          "name": "serialVersionUID"
+        }
+      ],
+      "methods": [
+        {
+          "name": "Any",
+          "parameterTypes": []
+        },
+        {
+          "name": "Assert",
+          "parameterTypes": [
+            "tlc2.value.impl.Value",
+            "tlc2.value.impl.Value"
+          ]
+        },
+        {
+          "name": "CombineFcn",
+          "parameterTypes": [
+            "tlc2.value.impl.Value",
+            "tlc2.value.impl.Value"
+          ]
+        },
+        {
+          "name": "JavaTime",
+          "parameterTypes": []
+        },
+        {
+          "name": "MakeFcn",
+          "parameterTypes": [
+            "tlc2.value.impl.Value",
+            "tlc2.value.impl.Value"
+          ]
+        },
+        {
+          "name": "Permutations",
+          "parameterTypes": [
+            "tlc2.value.impl.Value"
+          ]
+        },
+        {
+          "name": "Print",
+          "parameterTypes": [
+            "tlc2.value.impl.Value",
+            "tlc2.value.impl.Value"
+          ]
+        },
+        {
+          "name": "PrintT",
+          "parameterTypes": [
+            "tlc2.value.impl.Value"
+          ]
+        },
+        {
+          "name": "RandomElement",
+          "parameterTypes": [
+            "tlc2.value.impl.Value"
+          ]
+        },
+        {
+          "name": "SortSeq",
+          "parameterTypes": [
+            "tlc2.value.impl.Value",
+            "tlc2.value.impl.Value"
+          ]
+        },
+        {
+          "name": "TLCEval",
+          "parameterTypes": [
+            "tlc2.value.impl.Value"
+          ]
+        },
+        {
+          "name": "TLCGet",
+          "parameterTypes": [
+            "tlc2.value.impl.Value"
+          ]
+        },
+        {
+          "name": "TLCSet",
+          "parameterTypes": [
+            "tlc2.value.impl.Value",
+            "tlc2.value.impl.Value"
+          ]
+        },
+        {
+          "name": "ToString",
+          "parameterTypes": [
+            "tlc2.value.impl.Value"
+          ]
+        }
+      ],
+      "allDeclaredConstructors": true,
+      "allPublicConstructors": true,
+      "allDeclaredMethods": true,
+      "allPublicMethods": true,
+      "allDeclaredFields": true
+    },
+    {
+      "type": "tlc2.module.tlc2.overrides.TLCOverrides"
+    },
+    {
+      "type": "tlc2.overrides.TLCOverrides",
+      "allDeclaredConstructors": true,
+      "allPublicConstructors": true,
+      "allDeclaredMethods": true,
+      "allPublicMethods": true,
+      "allDeclaredFields": true
+    },
+    {
+      "type": "tlc2.tool.distributed.fp.FPSetRMI"
+    },
+    {
+      "type": "tlc2.tool.distributed.management.TLCStatisticsMXBean"
+    },
+    {
+      "type": "tlc2.tool.fp.FPSet_Stub"
+    },
+    {
+      "type": "tlc2.tool.fp.MSBDiskFPSet",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": [
+            "tlc2.tool.fp.FPSetConfiguration"
+          ]
+        }
+      ],
+      "allDeclaredConstructors": true,
+      "allPublicConstructors": true,
+      "allDeclaredMethods": true,
+      "allPublicMethods": true,
+      "allDeclaredFields": true
+    },
+    {
+      "type": "tlc2.tool.fp.management.DiskFPSetMXBean"
+    },
+    {
+      "type": "tlc2.tool.fp.management.DiskFPSetMXWrapper"
+    },
+    {
+      "type": "tlc2.tool.management.ModelCheckerMXWrapper"
+    },
+    {
+      "type": "tlc2.tool.management.TLCStandardMBean"
+    },
+    {
+      "type": "tlc2.tool.management.TLCStandardMBean$NullTLCStandardMBean"
+    },
+    {
+      "type": {
+        "proxy": [
+          "java.rmi.Remote",
+          "tlc2.tool.distributed.fp.FPSetRMI"
+        ]
+      }
+    },
+    {
+      "type": "tlc2.module.AnySet",
+      "allDeclaredConstructors": true,
+      "allPublicConstructors": true,
+      "allDeclaredMethods": true,
+      "allPublicMethods": true,
+      "allDeclaredFields": true
+    },
+    {
+      "type": "tlc2.module.Bags",
+      "allDeclaredConstructors": true,
+      "allPublicConstructors": true,
+      "allDeclaredMethods": true,
+      "allPublicMethods": true,
+      "allDeclaredFields": true
+    },
+    {
+      "type": "tlc2.module.BuiltInModuleHelper",
+      "allDeclaredConstructors": true,
+      "allPublicConstructors": true,
+      "allDeclaredMethods": true,
+      "allPublicMethods": true,
+      "allDeclaredFields": true
+    },
+    {
+      "type": "tlc2.module.Json",
+      "allDeclaredConstructors": true,
+      "allPublicConstructors": true,
+      "allDeclaredMethods": true,
+      "allPublicMethods": true,
+      "allDeclaredFields": true
+    },
+    {
+      "type": "tlc2.module.Randomization",
+      "allDeclaredConstructors": true,
+      "allPublicConstructors": true,
+      "allDeclaredMethods": true,
+      "allPublicMethods": true,
+      "allDeclaredFields": true
+    },
+    {
+      "type": "tlc2.module.TLCBuiltInOverrides",
+      "allDeclaredConstructors": true,
+      "allPublicConstructors": true,
+      "allDeclaredMethods": true,
+      "allPublicMethods": true,
+      "allDeclaredFields": true
+    },
+    {
+      "type": "tlc2.module.TLCEval",
+      "allDeclaredConstructors": true,
+      "allPublicConstructors": true,
+      "allDeclaredMethods": true,
+      "allPublicMethods": true,
+      "allDeclaredFields": true
+    },
+    {
+      "type": "tlc2.module.TLCExt",
+      "allDeclaredConstructors": true,
+      "allPublicConstructors": true,
+      "allDeclaredMethods": true,
+      "allPublicMethods": true,
+      "allDeclaredFields": true
+    },
+    {
+      "type": "tlc2.module.TLCGetSet",
+      "allDeclaredConstructors": true,
+      "allPublicConstructors": true,
+      "allDeclaredMethods": true,
+      "allPublicMethods": true,
+      "allDeclaredFields": true
+    },
+    {
+      "type": "tlc2.module.TransitiveClosure",
+      "allDeclaredConstructors": true,
+      "allPublicConstructors": true,
+      "allDeclaredMethods": true,
+      "allPublicMethods": true,
+      "allDeclaredFields": true
+    },
+    {
+      "type": "tlc2.module._JsonTrace",
+      "allDeclaredConstructors": true,
+      "allPublicConstructors": true,
+      "allDeclaredMethods": true,
+      "allPublicMethods": true,
+      "allDeclaredFields": true
+    },
+    {
+      "type": "tlc2.module._TLCTrace",
+      "allDeclaredConstructors": true,
+      "allPublicConstructors": true,
+      "allDeclaredMethods": true,
+      "allPublicMethods": true,
+      "allDeclaredFields": true
+    },
+    {
+      "type": "tlc2.overrides.Evaluation",
+      "allDeclaredConstructors": true,
+      "allPublicConstructors": true,
+      "allDeclaredMethods": true,
+      "allPublicMethods": true,
+      "allDeclaredFields": true
+    },
+    {
+      "type": "tlc2.overrides.ITLCOverrides",
+      "allDeclaredConstructors": true,
+      "allPublicConstructors": true,
+      "allDeclaredMethods": true,
+      "allPublicMethods": true,
+      "allDeclaredFields": true
+    },
+    {
+      "type": "tlc2.overrides.TLAPlusCallable",
+      "allDeclaredConstructors": true,
+      "allPublicConstructors": true,
+      "allDeclaredMethods": true,
+      "allPublicMethods": true,
+      "allDeclaredFields": true
+    },
+    {
+      "type": "tlc2.overrides.TLAPlusOperator",
+      "allDeclaredConstructors": true,
+      "allPublicConstructors": true,
+      "allDeclaredMethods": true,
+      "allPublicMethods": true,
+      "allDeclaredFields": true
+    },
+    {
+      "type": "tlc2.tool.fp.FPSetConfiguration",
+      "allDeclaredConstructors": true,
+      "allPublicConstructors": true,
+      "allDeclaredMethods": true,
+      "allPublicMethods": true,
+      "allDeclaredFields": true
+    },
+    {
+      "type": "tlc2.tool.fp.HeapBasedDiskFPSet",
+      "allDeclaredConstructors": true,
+      "allPublicConstructors": true,
+      "allDeclaredMethods": true,
+      "allPublicMethods": true,
+      "allDeclaredFields": true
+    },
+    {
+      "type": "tlc2.tool.fp.LSBDiskFPSet",
+      "allDeclaredConstructors": true,
+      "allPublicConstructors": true,
+      "allDeclaredMethods": true,
+      "allPublicMethods": true,
+      "allDeclaredFields": true
+    },
+    {
+      "type": "tlc2.tool.fp.MemFPSet",
+      "allDeclaredConstructors": true,
+      "allPublicConstructors": true,
+      "allDeclaredMethods": true,
+      "allPublicMethods": true,
+      "allDeclaredFields": true
+    },
+    {
+      "type": "tlc2.tool.fp.MemFPSet1",
+      "allDeclaredConstructors": true,
+      "allPublicConstructors": true,
+      "allDeclaredMethods": true,
+      "allPublicMethods": true,
+      "allDeclaredFields": true
+    },
+    {
+      "type": "tlc2.tool.fp.MemFPSet2",
+      "allDeclaredConstructors": true,
+      "allPublicConstructors": true,
+      "allDeclaredMethods": true,
+      "allPublicMethods": true,
+      "allDeclaredFields": true
+    },
+    {
+      "type": "tlc2.tool.fp.MultiFPSet",
+      "allDeclaredConstructors": true,
+      "allPublicConstructors": true,
+      "allDeclaredMethods": true,
+      "allPublicMethods": true,
+      "allDeclaredFields": true
+    },
+    {
+      "type": "tlc2.tool.fp.NonCheckpointableDiskFPSet",
+      "allDeclaredConstructors": true,
+      "allPublicConstructors": true,
+      "allDeclaredMethods": true,
+      "allPublicMethods": true,
+      "allDeclaredFields": true
+    },
+    {
+      "type": "tlc2.tool.fp.NoopFPSet",
+      "allDeclaredConstructors": true,
+      "allPublicConstructors": true,
+      "allDeclaredMethods": true,
+      "allPublicMethods": true,
+      "allDeclaredFields": true
+    },
+    {
+      "type": "tlc2.tool.fp.OffHeapDiskFPSet",
+      "allDeclaredConstructors": true,
+      "allPublicConstructors": true,
+      "allDeclaredMethods": true,
+      "allPublicMethods": true,
+      "allDeclaredFields": true
+    }
+  ],
+  "resources": [
+    {
+      "glob": "FiniteSets.class"
+    },
+    {
+      "glob": "HelloWorld.class"
+    },
+    {
+      "glob": "Integers.class"
+    },
+    {
+      "glob": "META-INF/MANIFEST.MF"
+    },
+    {
+      "glob": "META-INF/services/java.lang.System$LoggerFinder"
+    },
+    {
+      "glob": "META-INF/services/java.net.spi.InetAddressResolverProvider"
+    },
+    {
+      "glob": "Naturals.class"
+    },
+    {
+      "glob": "Sequences.class"
+    },
+    {
+      "glob": "Strings.class"
+    },
+    {
+      "glob": "TLC.class"
+    },
+    {
+      "glob": "model/MC.cfg"
+    },
+    {
+      "glob": "model/generated.properties"
+    },
+    {
+      "glob": "tla2sany"
+    },
+    {
+      "glob": "tla2sany/StandardModules/FiniteSets.class"
+    },
+    {
+      "glob": "tla2sany/StandardModules/FiniteSets.tla"
+    },
+    {
+      "glob": "tla2sany/StandardModules/HelloWorld.class"
+    },
+    {
+      "glob": "tla2sany/StandardModules/Integers.class"
+    },
+    {
+      "glob": "tla2sany/StandardModules/Integers.tla"
+    },
+    {
+      "glob": "tla2sany/StandardModules/Naturals.class"
+    },
+    {
+      "glob": "tla2sany/StandardModules/Naturals.tla"
+    },
+    {
+      "glob": "tla2sany/StandardModules/Sequences.class"
+    },
+    {
+      "glob": "tla2sany/StandardModules/Sequences.tla"
+    },
+    {
+      "glob": "tla2sany/StandardModules/Strings.class"
+    },
+    {
+      "glob": "tla2sany/StandardModules/TLC.class"
+    },
+    {
+      "glob": "tla2sany/StandardModules/TLC.tla"
+    },
+    {
+      "glob": "tla2sany/StandardModules/tlc2.overrides.TLCOverrides.class"
+    },
+    {
+      "glob": "tlc2.overrides.TLCOverrides.class"
+    },
+    {
+      "module": "jdk.jfr",
+      "glob": "jdk/jfr/internal/query/view.ini"
+    },
+    {
+      "module": "jdk.jfr",
+      "glob": "jdk/jfr/internal/types/metadata.bin"
+    }
+  ],
+  "bundles": [],
+  "jni": [
+    {
+      "type": "[Lcom.sun.management.internal.DiagnosticCommandArgumentInfo;"
+    },
+    {
+      "type": "[Lcom.sun.management.internal.DiagnosticCommandInfo;"
+    },
+    {
+      "type": "com.sun.management.internal.DiagnosticCommandArgumentInfo",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": [
+            "java.lang.String",
+            "java.lang.String",
+            "java.lang.String",
+            "java.lang.String",
+            "boolean",
+            "boolean",
+            "boolean",
+            "int"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "com.sun.management.internal.DiagnosticCommandInfo",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": [
+            "java.lang.String",
+            "java.lang.String",
+            "java.lang.String",
+            "boolean",
+            "java.util.List"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "java.lang.Boolean",
+      "methods": [
+        {
+          "name": "getBoolean",
+          "parameterTypes": [
+            "java.lang.String"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "java.util.Arrays",
+      "methods": [
+        {
+          "name": "asList",
+          "parameterTypes": [
+            "java.lang.Object[]"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "sun.management.VMManagementImpl",
+      "fields": [
+        {
+          "name": "compTimeMonitoringSupport"
+        },
+        {
+          "name": "currentThreadCpuTimeSupport"
+        },
+        {
+          "name": "objectMonitorUsageSupport"
+        },
+        {
+          "name": "otherThreadCpuTimeSupport"
+        },
+        {
+          "name": "remoteDiagnosticCommandsSupport"
+        },
+        {
+          "name": "synchronizerUsageSupport"
+        },
+        {
+          "name": "threadAllocatedMemorySupport"
+        },
+        {
+          "name": "threadContentionMonitoringSupport"
+        }
+      ]
+    }
+  ]
+}

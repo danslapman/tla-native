@@ -1,0 +1,7 @@
+tlc-native
+tlc
+tla2sany/
+.graal-meta-staging/
+Examples/
+tlaplus/
+.DS_Store
