@@ -13,6 +13,7 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BINARY="${SCRIPT_DIR}/tlc-native"
+SANY_BINARY="${SCRIPT_DIR}/tla-sany-native"
 STDLIB_SRC="${SCRIPT_DIR}/tla2sany/StandardModules"
 
 BIN_DIR="${HOME}/.local/bin"
@@ -20,8 +21,8 @@ XDG_DATA_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}"
 STDLIB_DEST="${XDG_DATA_HOME}/tlc/tla2sany/StandardModules"
 
 # ─── BUILD IF NEEDED ───────────────────────────────────────────────────────────
-if [[ ! -f "${BINARY}" ]]; then
-  echo "==> tlc-native not found. Running build-linux.sh first..."
+if [[ ! -f "${BINARY}" ]] || [[ ! -f "${SANY_BINARY}" ]]; then
+  echo "==> tlc-native or tla-sany-native not found. Running build-linux.sh first..."
   echo ""
   "${SCRIPT_DIR}/build-linux.sh"
   echo ""
@@ -43,6 +44,9 @@ mkdir -p "${STDLIB_DEST}"
 cp "${BINARY}" "${BIN_DIR}/tlc-native"
 chmod +x "${BIN_DIR}/tlc-native"
 
+cp "${SANY_BINARY}" "${BIN_DIR}/tla-sany-native"
+chmod +x "${BIN_DIR}/tla-sany-native"
+
 cp "${STDLIB_SRC}"/*.tla "${STDLIB_DEST}/"
 
 # Write a wrapper that uses the installed absolute paths
@@ -53,11 +57,20 @@ exec "\${HOME}/.local/bin/tlc-native" "-DTLA-Library=\${XDG_DATA_HOME:-\${HOME}/
 EOF
 chmod +x "${BIN_DIR}/tlc"
 
+cat > "${BIN_DIR}/tla-sany" << EOF
+#!/usr/bin/env bash
+# tla-sany - wrapper for tla-sany-native (installed by install-linux.sh)
+exec "\${HOME}/.local/bin/tla-sany-native" "-DTLA-Library=\${XDG_DATA_HOME:-\${HOME}/.local/share}/tlc/tla2sany/StandardModules" "\$@"
+EOF
+chmod +x "${BIN_DIR}/tla-sany"
+
 # ─── PATH CHECK ────────────────────────────────────────────────────────────────
 echo ""
 echo "==> Install complete:"
 echo "    Binary:   ${BIN_DIR}/tlc-native"
 echo "    Wrapper:  ${BIN_DIR}/tlc  (use this)"
+echo "    Binary:   ${BIN_DIR}/tla-sany-native"
+echo "    Wrapper:  ${BIN_DIR}/tla-sany  (use this)"
 echo "    Stdlib:   ${STDLIB_DEST}"
 echo ""
 

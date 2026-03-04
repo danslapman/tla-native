@@ -13,6 +13,7 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BINARY="${SCRIPT_DIR}/tlc-native"
+SANY_BINARY="${SCRIPT_DIR}/tla-sany-native"
 STDLIB_SRC="${SCRIPT_DIR}/tla2sany/StandardModules"
 
 BIN_DIR="${HOME}/.local/bin"
@@ -24,6 +25,11 @@ if [[ ! -f "${BINARY}" ]]; then
   needs_build=1
 elif ! file "${BINARY}" | grep -q "Mach-O"; then
   echo "==> tlc-native exists but is not a macOS (Mach-O) binary. Rebuilding..."
+  needs_build=1
+elif [[ ! -f "${SANY_BINARY}" ]]; then
+  needs_build=1
+elif ! file "${SANY_BINARY}" | grep -q "Mach-O"; then
+  echo "==> tla-sany-native exists but is not a macOS (Mach-O) binary. Rebuilding..."
   needs_build=1
 fi
 
@@ -50,6 +56,9 @@ mkdir -p "${STDLIB_DEST}"
 cp "${BINARY}" "${BIN_DIR}/tlc-native"
 chmod +x "${BIN_DIR}/tlc-native"
 
+cp "${SANY_BINARY}" "${BIN_DIR}/tla-sany-native"
+chmod +x "${BIN_DIR}/tla-sany-native"
+
 cp "${STDLIB_SRC}"/*.tla "${STDLIB_DEST}/"
 
 # Write a wrapper that uses the installed absolute paths
@@ -60,11 +69,20 @@ exec "\${HOME}/.local/bin/tlc-native" "-DTLA-Library=\${HOME}/Library/Applicatio
 EOF
 chmod +x "${BIN_DIR}/tlc"
 
+cat > "${BIN_DIR}/tla-sany" << EOF
+#!/usr/bin/env bash
+# tla-sany - wrapper for tla-sany-native (installed by install-osx.sh)
+exec "\${HOME}/.local/bin/tla-sany-native" "-DTLA-Library=\${HOME}/Library/Application Support/tlc/tla2sany/StandardModules" "\$@"
+EOF
+chmod +x "${BIN_DIR}/tla-sany"
+
 # ─── PATH CHECK ────────────────────────────────────────────────────────────────
 echo ""
 echo "==> Install complete:"
 echo "    Binary:   ${BIN_DIR}/tlc-native"
 echo "    Wrapper:  ${BIN_DIR}/tlc  (use this)"
+echo "    Binary:   ${BIN_DIR}/tla-sany-native"
+echo "    Wrapper:  ${BIN_DIR}/tla-sany  (use this)"
 echo "    Stdlib:   ${STDLIB_DEST}"
 echo ""
 

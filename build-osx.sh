@@ -11,8 +11,10 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 JAR="${SCRIPT_DIR}/tla2tools.jar"
-BINARY="${SCRIPT_DIR}/tlc-native"     # actual compiled binary
-WRAPPER="${SCRIPT_DIR}/tlc"           # shell wrapper that sets -libdir
+BINARY="${SCRIPT_DIR}/tlc-native"          # actual compiled binary
+WRAPPER="${SCRIPT_DIR}/tlc"                # shell wrapper that sets -libdir
+SANY_BINARY="${SCRIPT_DIR}/tla-sany-native"
+SANY_WRAPPER="${SCRIPT_DIR}/tla-sany"
 STDLIB_DIR="${SCRIPT_DIR}/tla2sany/StandardModules"
 CONFIG_DIR="${SCRIPT_DIR}/graal-config"
 TRACE_SPEC="${SCRIPT_DIR}/HelloWorld"
@@ -186,13 +188,53 @@ WRAPPER_EOF
   chmod +x "${WRAPPER}"
 
   echo ""
-  echo "==> Build complete:"
+  echo "==> Build complete (TLC):"
   echo "    Native binary: ${BINARY}"
   echo "    Wrapper:       ${WRAPPER}  (use this)"
   echo "    Standard lib:  ${STDLIB_DIR}"
   echo ""
   echo "    Quick test:  ${WRAPPER} HelloWorld"
   echo "    Full usage:  ${WRAPPER} -workers auto -config MySpec.cfg MySpec"
+
+  # ── Build SANY native image ──────────────────────────────────────────────────
+  echo ""
+  echo "==> Build mode: compiling SANY native image"
+  echo "    JAR:    ${JAR}"
+  echo "    Binary: ${SANY_BINARY}"
+  echo "    Heap:   ${BUILD_MEMORY} (override with BUILD_MEMORY=Xg)"
+  echo ""
+
+  # Copy COMMON_FLAGS minus the trailing "-o" "${BINARY}", then add SANY output path
+  local _n=${#COMMON_FLAGS[@]}
+  local -a SANY_FLAGS=("${COMMON_FLAGS[@]:0:$((_n-2))}")
+  SANY_FLAGS+=("-o" "${SANY_BINARY}")
+
+  if [[ -f "${METADATA_FILE}" ]]; then
+    SANY_FLAGS+=("-cp" "${JAR}:${STAGING_DIR}" "tla2sany.SANY")
+  else
+    SANY_FLAGS+=("-cp" "${JAR}" "tla2sany.SANY")
+  fi
+
+  "${NATIVE_IMAGE_BIN}" "${SANY_FLAGS[@]}"
+
+  # Create a thin wrapper script 'tla-sany' that injects -DTLA-Library automatically.
+  echo ""
+  echo "==> Creating wrapper script: ${SANY_WRAPPER}"
+  cat > "${SANY_WRAPPER}" << 'SANY_WRAPPER_EOF'
+#!/usr/bin/env bash
+# tla-sany - wrapper for tla-sany-native that provides the TLA+ standard library path.
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+exec "${SCRIPT_DIR}/tla-sany-native" "-DTLA-Library=${SCRIPT_DIR}/tla2sany/StandardModules" "$@"
+SANY_WRAPPER_EOF
+  chmod +x "${SANY_WRAPPER}"
+
+  echo ""
+  echo "==> Build complete (SANY):"
+  echo "    Native binary: ${SANY_BINARY}"
+  echo "    Wrapper:       ${SANY_WRAPPER}  (use this)"
+  echo "    Standard lib:  ${STDLIB_DIR}"
+  echo ""
+  echo "    Quick test:  ${SANY_WRAPPER} HelloWorld.tla"
 }
 
 # ─── DISPATCH ──────────────────────────────────────────────────────────────────

@@ -1,10 +1,11 @@
 # tla-native
 
-Builds [TLC](https://github.com/tlaplus/tlaplus) — the TLA+ model checker — as a self-contained
-native executable using [GraalVM Native Image](https://www.graalvm.org/native-image/).
+Builds [TLC](https://github.com/tlaplus/tlaplus) (the TLA+ model checker) and
+[SANY](https://github.com/tlaplus/tlaplus?tab=readme-ov-file#use) (the TLA+ syntactic analyzer)
+as self-contained native executables using [GraalVM Native Image](https://www.graalvm.org/native-image/).
 
-The result is a single binary (`tlc-native`) that starts instantly with no JVM overhead, making
-it convenient for use in CI pipelines and developer tooling.
+The result is instant-start binaries with no JVM overhead, making them convenient for use in CI
+pipelines and developer tooling.
 
 ## Prerequisites
 
@@ -30,15 +31,20 @@ docker pull container-registry.oracle.com/graalvm/native-image:24
 # Build and install to ~/.local/bin
 ./install-osx.sh
 
-# Test the installed binary
+# Run the model checker
 tlc /path/to/MySpec
+
+# Run the syntactic analyzer
+tla-sany /path/to/MySpec.tla
 ```
 
-`install-osx.sh` builds a Mach-O native binary if one is not already present, then installs:
+`install-osx.sh` builds Mach-O native binaries if not already present, then installs:
 
 ```
 ~/.local/bin/tlc-native
 ~/.local/bin/tlc
+~/.local/bin/tla-sany-native
+~/.local/bin/tla-sany
 ~/Library/Application Support/tlc/tla2sany/StandardModules/
 ```
 
@@ -54,8 +60,11 @@ To uninstall:
 # Build and install to ~/.local/bin
 ./install-linux.sh
 
-# Test the installed binary
+# Run the model checker
 tlc /path/to/MySpec
+
+# Run the syntactic analyzer
+tla-sany /path/to/MySpec.tla
 ```
 
 Installs to:
@@ -63,6 +72,8 @@ Installs to:
 ```
 ~/.local/bin/tlc-native
 ~/.local/bin/tlc
+~/.local/bin/tla-sany-native
+~/.local/bin/tla-sany
 ~/.local/share/tlc/tla2sany/StandardModules/   # respects $XDG_DATA_HOME
 ```
 
@@ -141,58 +152,62 @@ unless it was already present before the script started.
 
 ---
 
-## The wrapper script (`tlc`)
+## The wrapper scripts (`tlc`, `tla-sany`)
 
-After a successful build you will find two files next to the native binary:
+After a successful build you will find wrapper scripts next to each native binary:
 
 ```
-tlc-native   ← the compiled binary
-tlc          ← thin shell wrapper (use this one)
+tlc-native        ← compiled TLC binary
+tlc               ← thin shell wrapper (use this one)
+tla-sany-native   ← compiled SANY binary
+tla-sany          ← thin shell wrapper (use this one)
 ```
 
-**Always invoke `tlc`, not `tlc-native` directly.**
+**Always invoke the wrapper, not the `*-native` binary directly.**
 
-### Why the wrapper is necessary
+### Why the wrappers are necessary
 
-TLC locates standard library modules (Naturals, Sequences, FiniteSets, …) by searching a
-filesystem directory. The code responsible is `util.SimpleFilenameToStream`, which resolves
-paths relative to what it calls the *installation base path*. It determines that path by calling
-`Class.getProtectionDomain().getCodeSource().getLocation()` on itself and treating the result as
-a filesystem URI.
+Both TLC and SANY locate standard library modules (Naturals, Sequences, FiniteSets, …) by
+searching a filesystem directory. The code responsible is `util.SimpleFilenameToStream`, which
+resolves paths relative to what it calls the *installation base path*. It determines that path by
+calling `Class.getProtectionDomain().getCodeSource().getLocation()` on itself and treating the
+result as a filesystem URI.
 
 When running on the JVM, that URI points to `tla2tools.jar` and everything works. Inside a
 GraalVM native image the same call returns a `resource:/…` URI — a scheme that
-`java.io.File` does not understand — so the path resolution silently fails and TLC cannot find
-any standard module.
+`java.io.File` does not understand — so the path resolution silently fails and neither tool can
+find any standard module.
 
-The standard library files **are** embedded in the native binary as resources (via
-`-H:IncludeResources`), but they are embedded under a `resource:` URI that TLC's own path
+The standard library files **are** embedded in the native binaries as resources (via
+`-H:IncludeResources`), but they are embedded under a `resource:` URI that the tools' own path
 resolution code is not equipped to handle.
 
 The workaround is to extract the standard library files to a real directory on disk (done by the
-build script with `unzip`) and tell TLC where they are via the `TLA-Library` Java system
+build script with `unzip`) and tell the tool where they are via the `TLA-Library` Java system
 property, which `SimpleFilenameToStream` checks as a fallback:
 
 ```sh
-# What the wrapper does internally
-exec ./tlc-native "-DTLA-Library=$(pwd)/tla2sany/StandardModules" "$@"
+# What each wrapper does internally
+exec ./tlc-native      "-DTLA-Library=$(pwd)/tla2sany/StandardModules" "$@"
+exec ./tla-sany-native "-DTLA-Library=$(pwd)/tla2sany/StandardModules" "$@"
 ```
 
-The wrapper injects that property automatically on every invocation, making the binary
-*self-contained from the caller's perspective*: you just call `./tlc MySpec` and standard modules
-are found without any additional setup.
+Each wrapper injects that property automatically on every invocation, making the binaries
+*self-contained from the caller's perspective*.
 
 ### Distributing the build output
 
-The three artifacts below must be kept together:
+All five artifacts below must be kept together:
 
 ```
-tlc-native                        ← compiled binary
+tlc-native                        ← compiled TLC binary
 tlc                               ← wrapper (regenerated by every build)
-tla2sany/StandardModules/*.tla    ← standard library files on disk
+tla-sany-native                   ← compiled SANY binary
+tla-sany                          ← wrapper (regenerated by every build)
+tla2sany/StandardModules/*.tla    ← standard library files on disk (shared)
 ```
 
-The wrapper uses its own location to derive the library path, so the three can be moved
+The wrappers use their own location to derive the library path, so all five can be moved
 anywhere as a group and will continue to work.
 
 ---
