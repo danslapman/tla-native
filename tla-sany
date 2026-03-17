@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-# tla-sany - wrapper for tla-sany-native that provides the TLA+ standard library path.
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-exec "${SCRIPT_DIR}/tla-sany-native" "-DTLA-Library=${SCRIPT_DIR}/tla2sany/StandardModules" "$@"
