@@ -12,9 +12,9 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-BINARY="${SCRIPT_DIR}/tlc-native"
-SANY_BINARY="${SCRIPT_DIR}/tla-sany-native"
-STDLIB_SRC="${SCRIPT_DIR}/tla2sany/StandardModules"
+BINARY="${SCRIPT_DIR}/target/tlc-native"
+SANY_BINARY="${SCRIPT_DIR}/target/tla-sany-native"
+STDLIB_SRC="${SCRIPT_DIR}/target/tla2sany/StandardModules"
 
 BIN_DIR="${HOME}/.local/bin"
 XDG_DATA_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}"

@@ -24,8 +24,8 @@ if ! command -v docker &>/dev/null; then
   exit 1
 fi
 
-if [[ ! -f "${SCRIPT_DIR}/tlc-native" || ! -x "${SCRIPT_DIR}/tlc" ]]; then
-  echo "ERROR: Linux build artifacts not found (tlc-native / tlc)." >&2
+if [[ ! -f "${SCRIPT_DIR}/target/tlc-native" || ! -x "${SCRIPT_DIR}/target/tlc" ]]; then
+  echo "ERROR: Linux build artifacts not found (target/tlc-native / target/tlc)." >&2
   echo "       Run './docker-build.sh' first to build the Linux binary." >&2
   exit 1
 fi

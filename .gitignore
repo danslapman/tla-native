@@ -1,9 +1,3 @@
-tlc-native
-tlc
-tla-sany
-tla-sany-native
-tla2sany/
-.graal-meta-staging/
-Examples/
+target/
 tlaplus/
 .DS_Store

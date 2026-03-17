@@ -7,15 +7,15 @@
 #   VERBOSE=1 ./test-osx.sh          # show full TLC output for each model
 #
 # Requires:
-#   - ./tlc  (the wrapper script created by build-osx.sh)
-#   - ./Examples/  (cloned from https://github.com/tlaplus/Examples)
+#   - ./target/tlc  (the wrapper script created by build-osx.sh)
+#   - ./target/Examples/  (cloned from https://github.com/tlaplus/Examples)
 #   - jq
 
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-TLC="${SCRIPT_DIR}/tlc"
-EXAMPLES_DIR="${SCRIPT_DIR}/Examples/specifications"
+TLC="${SCRIPT_DIR}/target/tlc"
+EXAMPLES_DIR="${SCRIPT_DIR}/target/Examples/specifications"
 MAX_RUNTIME="${MAX_RUNTIME:-60}"
 # Hard per-model timeout in seconds; models exceeding this are killed and marked TIMEOUT
 MODEL_TIMEOUT="${MODEL_TIMEOUT:-120}"
@@ -32,14 +32,15 @@ if [[ ! -x "${TLC}" ]]; then
   exit 1
 fi
 CLONED_EXAMPLES=0
-if [[ ! -d "${SCRIPT_DIR}/Examples" ]]; then
+if [[ ! -d "${SCRIPT_DIR}/target/Examples" ]]; then
   echo "==> Cloning tlaplus/Examples (shallow)..."
-  git clone --depth=1 https://github.com/tlaplus/Examples "${SCRIPT_DIR}/Examples"
+  mkdir -p "${SCRIPT_DIR}/target"
+  git clone --depth=1 https://github.com/tlaplus/Examples "${SCRIPT_DIR}/target/Examples"
   CLONED_EXAMPLES=1
 fi
 cleanup_examples() {
   if [[ ${CLONED_EXAMPLES} -eq 1 ]]; then
-    rm -rf "${SCRIPT_DIR}/Examples"
+    rm -rf "${SCRIPT_DIR}/target/Examples"
   fi
 }
 trap cleanup_examples EXIT
@@ -108,8 +109,8 @@ for manifest in "${EXAMPLES_DIR}"/*/manifest.json; do
     fi
 
     # Resolve absolute paths (manifest paths are relative to Examples root)
-    mod_file="${SCRIPT_DIR}/Examples/${module_path}"
-    cfg_file="${SCRIPT_DIR}/Examples/${model_path}"
+    mod_file="${SCRIPT_DIR}/target/Examples/${module_path}"
+    cfg_file="${SCRIPT_DIR}/target/Examples/${model_path}"
 
     if [[ ! -f "${mod_file}" || ! -f "${cfg_file}" ]]; then
       echo "SKIP (missing file): ${model_path}"

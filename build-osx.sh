@@ -11,11 +11,11 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 JAR="${SCRIPT_DIR}/tla2tools.jar"
-BINARY="${SCRIPT_DIR}/tlc-native"          # actual compiled binary
-WRAPPER="${SCRIPT_DIR}/tlc"                # shell wrapper that sets -libdir
-SANY_BINARY="${SCRIPT_DIR}/tla-sany-native"
-SANY_WRAPPER="${SCRIPT_DIR}/tla-sany"
-STDLIB_DIR="${SCRIPT_DIR}/tla2sany/StandardModules"
+BINARY="${SCRIPT_DIR}/target/tlc-native"          # actual compiled binary
+WRAPPER="${SCRIPT_DIR}/target/tlc"                # shell wrapper that sets -libdir
+SANY_BINARY="${SCRIPT_DIR}/target/tla-sany-native"
+SANY_WRAPPER="${SCRIPT_DIR}/target/tla-sany"
+STDLIB_DIR="${SCRIPT_DIR}/target/tla2sany/StandardModules"
 CONFIG_DIR="${SCRIPT_DIR}/graal-config"
 TRACE_SPEC="${SCRIPT_DIR}/HelloWorld"
 BUILD_MEMORY="${BUILD_MEMORY:-8g}"
@@ -54,7 +54,7 @@ do_trace() {
   fi
 
   mkdir -p "${CONFIG_DIR}"
-  local STATES_DIR="${SCRIPT_DIR}/states-trace"
+  local STATES_DIR="${SCRIPT_DIR}/target/states-trace"
   mkdir -p "${STATES_DIR}"
 
   # TLC may exit non-zero (e.g. deadlock detected) - that's fine for tracing
@@ -83,6 +83,7 @@ do_trace() {
 
 # ─── BUILD MODE ────────────────────────────────────────────────────────────────
 do_build() {
+  mkdir -p "${SCRIPT_DIR}/target"
   echo "==> Build mode: compiling TLC native image"
   echo "    JAR:    ${JAR}"
   echo "    Binary: ${BINARY}"
@@ -138,7 +139,7 @@ do_build() {
   # When we have traced metadata, switch from -jar to -cp + main class so we can
   # put a staging directory (containing META-INF/native-image/) on the classpath.
   local METADATA_FILE="${CONFIG_DIR}/reachability-metadata.json"
-  local STAGING_DIR="${SCRIPT_DIR}/.graal-meta-staging"
+  local STAGING_DIR="${SCRIPT_DIR}/target/.graal-meta-staging"
 
   local -a FLAGS=("${COMMON_FLAGS[@]}")
 
