@@ -1,0 +1,117 @@
+# Builds tlc / tla-sany native images for macOS and Linux (arm64 + x86_64), tests them
+# against tlaplus/Examples and, for a v* tag, publishes them as a GitHub release.
+#
+# Each release asset is tla-native-<tag>-<os>-<arch>.tar.gz, where <os>-<arch> is
+# `$(uname -s | tr '[:upper:]' '[:lower:]')-$(uname -m)` of the target machine
+# (darwin-arm64, darwin-x86_64, linux-x86_64, linux-aarch64). It holds the relocatable
+# build output group: tlc, tlc-native, tla-sany, tla-sany-native,
+# tla2sany/StandardModules/*.tla and the TLA+ tools license. SHA256SUMS covers all assets.
+#
+# A manual run (workflow_dispatch) builds and tests only; assets are labelled dev-<sha>
+# and kept as workflow artifacts.
+
+name: release
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  # Examples models expected to finish within this many seconds are run as the test gate
+  MAX_RUNTIME: '30'
+
+jobs:
+  build:
+    name: build (${{ matrix.platform }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: macos-15
+            platform: darwin-arm64
+            script: osx
+            # macos-15 arm64 runners have 7 GB RAM; the build scripts default to 8g
+            build-memory: 5g
+          - runner: macos-15-intel
+            platform: darwin-x86_64
+            script: osx
+            build-memory: 8g
+          - runner: ubuntu-26.04
+            platform: linux-x86_64
+            script: linux
+            build-memory: 8g
+          - runner: ubuntu-26.04-arm
+            platform: linux-aarch64
+            script: linux
+            build-memory: 8g
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: graalvm/setup-graalvm@v1
+        with:
+          java-version: '25'
+          distribution: 'graalvm'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          native-image-job-reports: 'true'
+
+      - name: Build
+        env:
+          BUILD_MEMORY: ${{ matrix.build-memory }}
+        run: ./build-${{ matrix.script }}.sh
+
+      - name: Test
+        run: ./test-${{ matrix.script }}.sh
+
+      - name: Package
+        env:
+          # keep macOS tar from adding AppleDouble ._ files
+          COPYFILE_DISABLE: '1'
+        run: |
+          platform="$(uname -s | tr '[:upper:]' '[:lower:]')-$(uname -m)"
+          if [[ "${platform}" != "${{ matrix.platform }}" ]]; then
+            echo "runner reports ${platform}, expected ${{ matrix.platform }}" >&2
+            exit 1
+          fi
+          if [[ "${GITHUB_REF_TYPE}" == "tag" ]]; then label="${GITHUB_REF_NAME}"; else label="dev-${GITHUB_SHA::7}"; fi
+          curl -fsSL -o target/LICENSE-tlaplus https://raw.githubusercontent.com/tlaplus/tlaplus/master/LICENSE
+          tar -czf "tla-native-${label}-${platform}.tar.gz" -C target \
+            tlc tlc-native tla-sany tla-sany-native tla2sany LICENSE-tlaplus
+
+      # upload-artifact drops file modes, so the executables travel inside the tarball
+      - uses: actions/upload-artifact@v7
+        with:
+          name: tla-native-${{ matrix.platform }}
+          path: tla-native-*.tar.gz
+          if-no-files-found: error
+
+  release:
+    if: github.ref_type == 'tag'
+    needs: build
+    runs-on: ubuntu-26.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          pattern: tla-native-*
+          path: dist
+          merge-multiple: true
+
+      - name: Publish
+        working-directory: dist
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          sha256sum tla-native-*.tar.gz > SHA256SUMS
+          cat SHA256SUMS
+          gh release create "${GITHUB_REF_NAME}" tla-native-*.tar.gz SHA256SUMS \
+            --repo "${GITHUB_REPOSITORY}" \
+            --verify-tag \
+            --title "${GITHUB_REF_NAME}" \
+            --notes "Native TLC and SANY built from ${GITHUB_SHA} with Oracle GraalVM 25 for darwin-arm64, darwin-x86_64, linux-x86_64 and linux-aarch64."
