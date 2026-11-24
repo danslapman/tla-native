@@ -20,10 +20,6 @@ on:
 permissions:
   contents: read
 
-env:
-  # Examples models expected to finish within this many seconds are run as the test gate
-  MAX_RUNTIME: '30'
-
 jobs:
   build:
     name: build (${{ matrix.platform }})
