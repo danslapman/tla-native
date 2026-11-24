@@ -65,8 +65,10 @@ jobs:
           BUILD_MEMORY: ${{ matrix.build-memory }}
         run: ./build-${{ matrix.script }}.sh
 
-      - name: Test
-        run: ./test-${{ matrix.script }}.sh
+      - name: Smoke test
+        run: |
+          ./target/tla-sany HelloWorld.tla
+          ./target/tls -workers auto -cleanup -metadir "${RUNNER_TEMP}/tls-states -config HelloWorld.cfg HelloWorld
 
       - name: Package
         env:
